@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="台账复活台：把半结构化台账文本复活成可搜索的结构化记录。全部在浏览器本地处理，不上传任何数据。">
+  <title>台账复活台 · Ledger Revival</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%91%BB%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>台账复活台 <span class="en">Ledger Revival</span></h1>
+    <p class="tagline">把散落在聊天记录、旧文档和老系统导出里的半结构化台账文本，复活成可搜索、可筛选、可导出的结构化记录。</p>
+    <p class="privacy" role="note">🔒 全部在你的浏览器本地处理：不上传、不联网、不存储。刷新页面即清空。</p>
+  </header>
+
+  <main>
+    <section class="panel" aria-labelledby="input-title">
+      <h2 id="input-title">1 · 放入台账 <span class="en">Bury the old ledger</span></h2>
+      <label class="field-label" for="raw-input">粘贴台账文本，每行一条。支持 Tab、|、逗号、分号、空格分隔，也支持完全没有分隔符的行。</label>
+      <textarea id="raw-input" rows="10" spellcheck="false" autocomplete="off"
+        placeholder="2026-10-03  城西供电局  第三季度电费  ¥18,420.50  已付款  王建国&#10;2026年10月8日，市政工程管理处，北门管道抢修，1.2万，进行中，张伟&#10;日期:2026.10.12 单位:蓝鲸网络科技公司 事项:机房交换机维保 金额:¥4,500 状态:审批中 负责人:陈静"></textarea>
+      <div class="actions">
+        <button type="button" id="btn-revive" class="primary">⚰️ 复活 Revive</button>
+        <button type="button" id="btn-sample">载入示例</button>
+        <label class="button" for="file-input">导入 CSV</label>
+        <input type="file" id="file-input" accept=".csv,.txt,text/csv,text/plain" hidden>
+        <button type="button" id="btn-clear" class="ghost">清空</button>
+      </div>
+      <p id="status-msg" class="status-msg" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="panel" id="result-panel" aria-labelledby="result-title" hidden>
+      <h2 id="result-title">2 · 复活的记录 <span class="en">Risen records</span></h2>
+
+      <div class="toolbar">
+        <input type="search" id="f-keyword" placeholder="🔍 关键词搜索，空格分隔多个词（同时满足）" aria-label="关键词搜索">
+        <button type="button" id="btn-reset" class="ghost">清除筛选</button>
+        <button type="button" id="btn-export" class="primary">⬇ 导出 CSV</button>
+      </div>
+
+      <div class="filters">
+        <label>日期从 <input type="date" id="f-date-from"></label>
+        <label>到 <input type="date" id="f-date-to"></label>
+        <label>单位/对象 <select id="f-party"></select></label>
+        <label>事项包含 <input type="text" id="f-item" placeholder="如：维修"></label>
+        <label>金额 ≥ <input type="number" id="f-amount-min" step="any" inputmode="decimal"></label>
+        <label>金额 ≤ <input type="number" id="f-amount-max" step="any" inputmode="decimal"></label>
+        <label>状态 <select id="f-status"></select></label>
+        <label>责任人 <select id="f-owner"></select></label>
+      </div>
+
+      <p id="stats" class="stats"></p>
+      <p class="legend"><span class="unsure-sample">虚线下划线</span> 表示自动识别不确定，请对照“原文”核对。</p>
+
+      <div class="table-wrap">
+        <table id="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">日期</th>
+              <th scope="col">单位/对象</th>
+              <th scope="col">事项</th>
+              <th scope="col" class="num">金额</th>
+              <th scope="col">状态</th>
+              <th scope="col">责任人</th>
+              <th scope="col">原文</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+        <p id="empty-msg" class="empty-msg" hidden>没有符合条件的记录。</p>
+      </div>
+      <button type="button" id="btn-more" class="ghost more" hidden>显示更多</button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    台账复活台 Ledger Revival · Kiroween 2026 · Resurrection · MIT License · 零依赖、零上传
+  </footer>
+
+  <script src="js/csv.js"></script>
+  <script src="js/parser.js"></script>
+  <script src="js/filter.js"></script>
+  <script src="js/sample.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

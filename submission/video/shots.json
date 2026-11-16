@@ -1,0 +1,134 @@
+[
+  {
+    "id": "01-title",
+    "kind": "card",
+    "title": "Ledger Revival",
+    "subtitle": "台账复活台 · Kiroween 2026 · Resurrection",
+    "say": "Ledger Revival. Old ledger text, back from the dead."
+  },
+  {
+    "id": "02-dead-ledger",
+    "kind": "notepad",
+    "highlightLine": 9,
+    "say": "This is a team ledger after the tool behind it was retired. Every line holds the same six facts: date, who, what, how much, status, and who is handling it. But each line is written differently. Tabs, commas, labels, and this one has no separators at all."
+  },
+  {
+    "id": "03-paste",
+    "kind": "app",
+    "action": "paste",
+    "ring": [
+      "btn-revive"
+    ],
+    "say": "Ledger Revival is a single static page. I paste the text in, and hit Revive."
+  },
+  {
+    "id": "04-revived",
+    "kind": "app",
+    "action": "table",
+    "ringCells": [
+      [
+        3,
+        4
+      ],
+      [
+        9,
+        2
+      ],
+      [
+        9,
+        3
+      ],
+      [
+        9,
+        4
+      ],
+      [
+        9,
+        6
+      ]
+    ],
+    "say": "Every line becomes a record with six columns. Dates are normalised, one point two wan becomes twelve thousand, and the line with no separators is split into the right fields.",
+    "caption": "Every line becomes a record with six columns. Dates are normalised, \"1.2万\" becomes 12,000, and the line with no separators is split into the right fields."
+  },
+  {
+    "id": "05-unsure",
+    "kind": "app",
+    "action": "table",
+    "ringUnsure": true,
+    "say": "When the parser has to guess, the cell is underlined. This date had no year, so it took the year from the line above. The original text always stays on the right, so every record can be checked."
+  },
+  {
+    "id": "06-search",
+    "kind": "app",
+    "action": "search",
+    "say": "Search takes several words, and every word has to match. Matches are highlighted, and the total updates as you filter."
+  },
+  {
+    "id": "07-filter",
+    "kind": "app",
+    "action": "filter-overdue",
+    "ring": [
+      "f-status"
+    ],
+    "say": "You can also filter by date range, party, item, amount, status and owner. Here, only the overdue records."
+  },
+  {
+    "id": "08-export",
+    "kind": "csvview",
+    "say": "Export gives you exactly what is on screen, as a CSV file with a byte order mark, so Excel opens the Chinese text correctly. The file is generated in the browser."
+  },
+  {
+    "id": "09-import",
+    "kind": "app",
+    "action": "csv",
+    "say": "It also reads CSV files left behind by old tools. Chinese header names are mapped automatically, quoted commas and line breaks are handled, and G B K encoded files work too.",
+    "caption": "It also reads CSV files left behind by old tools. Chinese header names (登记日期, 金额(元)…) are mapped automatically, quoted commas and line breaks are handled, and GBK-encoded files work too."
+  },
+  {
+    "id": "10-privacy",
+    "kind": "privacy",
+    "say": "There is no backend, no account, and no A P I key. The page's content security policy blocks every outbound connection, and a browser test checks that a real connect source violation is raised. Your ledger never leaves your computer.",
+    "caption": "There is no backend, no account and no API key. The Content Security Policy blocks every outbound connection, and a browser test checks that a real connect-src violation is raised. Your ledger never leaves your computer."
+  },
+  {
+    "id": "11-spec",
+    "kind": "file",
+    "file": "../../.kiro/specs/ledger-revival/requirements.md",
+    "label": ".kiro/specs/ledger-revival/requirements.md",
+    "from": 57,
+    "to": 72,
+    "say": "I built it with Kiro's spec workflow. First, requirements with acceptance criteria. Rules like rejecting the thirtieth of February became test cases almost word for word."
+  },
+  {
+    "id": "12-design",
+    "kind": "file",
+    "file": "../../.kiro/specs/ledger-revival/design.md",
+    "label": ".kiro/specs/ledger-revival/design.md",
+    "from": 55,
+    "to": 69,
+    "say": "Then the design: the parsing pipeline, step by step. Normalise, read labels, split, peel out the date, amount and status, then work out the owner, party and item from what is left."
+  },
+  {
+    "id": "13-steering",
+    "kind": "file",
+    "file": "../../.kiro/steering/ledger-revival.md",
+    "label": ".kiro/steering/ledger-revival.md",
+    "from": 1,
+    "to": 22,
+    "say": "A steering file holds the rules the code must never break. No network calls, no local storage, and no inner H T M L with user text.",
+    "caption": "A steering file holds the rules the code must never break: no network calls, no localStorage, and no innerHTML with user text."
+  },
+  {
+    "id": "14-tests",
+    "kind": "tests",
+    "say": "And a Kiro hook runs the test suite every time a JavaScript file is saved. Twenty two unit tests, and a smoke test that drives the real page in headless Chrome.",
+    "caption": "And a Kiro hook runs the test suite every time a JavaScript file is saved: 22 unit tests, plus a smoke test that drives the real page in headless Chrome."
+  },
+  {
+    "id": "15-end",
+    "kind": "card",
+    "title": "Ledger Revival",
+    "subtitle": "Paste text or CSV · 6 fields · search · filter · export · 0 uploads",
+    "say": "Ledger Revival. Old ledger text, back from the dead, and it never leaves your computer."
+  }
+]

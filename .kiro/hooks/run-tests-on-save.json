@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run tests on JS save",
+      "trigger": "PostFileSave",
+      "description": "保存 js/ 下的文件时运行无头单元测试，确保解析器没有回退。",
+      "matcher": "[\\\\/]js[\\\\/].*\\.js$",
+      "action": {
+        "type": "command",
+        "command": "pwsh -NoProfile -File tests/run.ps1",
+        "timeout": 90
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+# 视频生成的中间文件（可用 submission/video/build.ps1 重新生成）
+submission/video/build/*.png
+submission/video/build/*.wav
+submission/video/build/*.mp4
+submission/video/build/*.txt
+submission/video/*.mp4

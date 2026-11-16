@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Ledger Revival UI smoke test</title>
+  <style>
+    html, body { margin: 0; background: #000; }
+    iframe { border: 0; width: 100vw; height: 100vh; display: block; }
+    #out { position: fixed; left: -9999px; }
+  </style>
+</head>
+<body>
+  <!-- 用 run-ui.ps1 以 --allow-file-access-from-files 运行：驱动真实页面，检查渲染、CSV 导入、CSP 断网。 -->
+  <iframe id="app" src="../index.html"></iframe>
+  <pre id="out">running…</pre>
+  <script src="ui.js"></script>
+</body>
+</html>
